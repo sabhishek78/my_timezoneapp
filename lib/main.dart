@@ -19,6 +19,24 @@ class TimeZoneApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+        title: "time zone app",
+        theme: ThemeData(
+          // Define the default brightness and colors.
+          brightness: Brightness.dark,
+          primaryColor: Colors.black,
+          accentColor: Colors.cyan[600],
+
+          // Define the default font family.
+          fontFamily: 'Montserrat',
+
+          // Define the default TextTheme. Use this to specify the default
+          // text styling for headlines, titles, bodies of text, and more.
+          textTheme: TextTheme(
+            headline: TextStyle(fontSize: 72.0, fontWeight: FontWeight.bold),
+            title: TextStyle(fontSize: 36.0, fontStyle: FontStyle.italic),
+            body1: TextStyle(fontSize: 14.0, fontFamily: 'Hind'),
+          ),
+        ),
       home: MyHomePage(),
     );
   }
@@ -66,16 +84,7 @@ class _MyHomePageState extends State<MyHomePage> {
         body: Center(
           child: Column(
             children: <Widget>[
-              Ink(
-                color: Colors.grey,
-                child: ListTile(
-                  title: Text(
-                    'Select Time Zone',
-                    style: TextStyle(color: Colors.white),
-                  ),
-                  onTap: () {},
-                ),
-              ),
+
               Ink(
                 color: Colors.white12,
                 child: ListTile(
@@ -110,6 +119,7 @@ class LocationsSearch extends SearchDelegate<String> {
   final List<dynamic> cities;
 
   LocationsSearch(this.cities);
+
 
   @override
   List<Widget> buildActions(BuildContext context) {
@@ -175,6 +185,16 @@ class LocationsSearch extends SearchDelegate<String> {
       },
     );
   }
+
+  @override
+  ThemeData appBarTheme(BuildContext context) {
+    // TODO: implement appBarTheme
+
+    return ThemeData.dark();
+  }
+
+
+
 }
 
 class SelectLocation extends StatefulWidget {
@@ -198,7 +218,11 @@ class _SelectLocationState extends State<SelectLocation> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: Scaffold(
+      child: Scaffold(backgroundColor: Colors.black,
+        appBar: AppBar(
+          backgroundColor: Colors.black,
+
+        ),
         body: ListView.builder(
           itemCount: widget.locationList
               .where((e) => e.contains(myController.text))
